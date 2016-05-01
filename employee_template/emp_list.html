@@ -1,0 +1,77 @@
+
+{% load i18n %}
+
+{% block TitlePage %}
+<title>{% trans "Intelly Serve" %}</title>
+{% endblock %}
+
+{% block MainContent %}
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+   $('#customers').DataTable();
+});
+</script>
+
+<div id="page-content">
+		<div id='wrap'>
+			<div id="page-heading">
+				<h1>{% trans "Emp List" %}</h1>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div id="new-user" class="add-user-panel">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h4>{% trans "Emp List" %}</h4>
+								<div class="options">							
+								</div>
+							</div>
+							<div class="panel-body">
+   <div class="box-body table-responsive" id='ptable' >
+
+<table id="customers" class="display" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]" width="100%">
+<thead>
+            <tr>
+		
+                <th>{% trans "Emp Name" %}</th>
+                
+                <th>{% trans "Emp No" %}</th>
+				
+				
+				
+            </tr>
+</thead>
+
+<tbody>
+	
+		{% for type in emp_list %}
+			<tr>
+				<td>
+				{{ type.emp_name }}
+				</td>
+				
+				<td>
+				{{ type.age }}
+				</td>
+				
+			</tr>
+        	{% endfor %} 
+			
+</tbody>
+		
+</table>
+		
+							</div>
+						</div>
+					</div>
+			    </div> <!-- Row -->
+			</div> <!-- container -->
+		</div> <!--wrap -->
+	</div> <!-- page-content -->
+{% endblock %}
