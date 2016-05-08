@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'employee_view',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -100,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+AUTHENTICATION_BACKENDS = ('employee_view.backends.ProfileAuthBackend', 'django.contrib.auth.backends.ModelBackend')
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 

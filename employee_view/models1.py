@@ -7,5 +7,4 @@ from django.contrib.auth.models import AbstractBaseUser
 class Profile(AbstractBaseUser):
    imei = models.CharField(max_length=100)
    mac = models.CharField(max_length=128)
-   USERNAME_FIELD = 'imei'
 

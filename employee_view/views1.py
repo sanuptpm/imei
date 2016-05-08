@@ -4,7 +4,6 @@ from django.template import RequestContext,Context
 from django.http import HttpResponse,HttpResponseRedirect, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required, permission_required
 #from django.db.models import F
 #from django import forms
 #from django.conf import settings
@@ -21,11 +20,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 #from django.core import serializers
 #from adduser.utils import custom_serialize
 #from django.core.urlresolvers import reverse
-from django.views.decorators.csrf import csrf_exempt
 import MySQLdb
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-
-
 
 def dictfetchall(cursor):
     "Returns all rows from a cursor as a dict"
@@ -49,8 +46,8 @@ def employee_form(request):
 		cursor.close()
 		db.commit()
 		db.close()
-	return render_to_response('employee.html',  context_instance = RequestContext(request))	
-@login_required
+	return render_to_response('employee.html',  context_instance = RequestContext(request))
+	
 def employee_list(request):
 	#import pdb; pdb.set_trace();
 	db = get_db_conn()
@@ -65,17 +62,21 @@ def employee_list(request):
 
 @csrf_exempt
 def login_view(request):
+	print "........imei"
 	if request.method == 'POST':
 		imei = request.POST['imei']
 		mac = request.POST['mac']
 		user = authenticate(imei = imei, mac = mac)
-		
+		print ".......user", user
 		if user is not None:
 			login(request, user)
-			logauth = {'Success':True, 'msg':'login Success'}
 		else:
-			logauth = {'Success':False, 'msg':'login Failed'}
-		return JsonResponse(logauth)
-
+			print "........else"
+		print "........imei", imei
+		print "........mac", mac
+	return JsonResponse({imei:mac})
+#@csrf_exempt
+#def logout_view(request):
+	#logout(request)
 
 
