@@ -15,11 +15,11 @@ print response.headers
 print response.request.headers
 
 #Enployee list request
-#url =  "http://127.0.0.1:8000/employee_list/"
-#response = session.get(url)
+url =  "http://127.0.0.1:8000/employee_list/"
+response = session.get(url)
 
 #print response.json()
 
-#print response.headers
+print response.headers
 
-#print response.request.headers
+print response.request.headers
