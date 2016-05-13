@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'employee_view',
+    'employee',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'empl.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + '/employee_template'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ('employee_view.backends.ProfileAuthBackend', 'django.contrib.auth.backends.ModelBackend')
+AUTHENTICATION_BACKENDS = ('employee.backends.ProfileAuthBackend', 'django.contrib.auth.backends.ModelBackend')
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
