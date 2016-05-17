@@ -6,8 +6,8 @@ from django.utils.crypto import salted_hmac
 
 
 class Profile(AbstractBaseUser):
-   imei = models.CharField(max_length=100)
-   mac = models.CharField(max_length=128)
+   imei = models.CharField(max_length=100, unique=True)
+   mac = models.CharField(max_length=128, unique=True)
    USERNAME_FIELD = 'imei'
    #def get_session_auth_hash(self):
         #key_salt = "django.contrib.auth.models.AbstractBaseUser.get_session_auth_hash"

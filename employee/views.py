@@ -36,46 +36,47 @@ def dictfetchall(cursor):
     ]
 
 def get_db_conn():
-	db = MySQLdb.connect(host="localhost", user="dbadmin", passwd="dbadmin1", db="test", port=3306)
-	return db
+    db = MySQLdb.connect(host="localhost", user="dbadmin", passwd="dbadmin1", db="test", port=3306)
+    return db
 
 def employee_form(request):
-	if request.method == 'POST':
-		emp_name = request.POST.get('emp_name')
-		emp_no = request.POST.get('emp_no')
-		db = get_db_conn()
-		cursor = db.cursor()
-		cursor.execute("CALL ins_emps('"+str(emp_name)+"',"+str(emp_no)+");")
-		cursor.close()
-		db.commit()
-		db.close()
-	return render_to_response('employee.html',  context_instance = RequestContext(request))	
+    if request.method == 'POST':
+        emp_name = request.POST.get('emp_name')
+        emp_no = request.POST.get('emp_no')
+        db = get_db_conn()
+        cursor = db.cursor()
+        cursor.execute("CALL ins_emps('"+str(emp_name)+"',"+str(emp_no)+");")
+        cursor.close()
+        db.commit()
+        db.close()
+    return render_to_response('employee.html',  context_instance = RequestContext(request))	
 @login_required
 def employee_list(request):
-	#import pdb; pdb.set_trace();
-	db = get_db_conn()
-	cursor = db.cursor()
-	cursor.execute("CALL get_all_emps();")
-	emp_list = dictfetchall(cursor)
-	cursor.close()
-	db.commit()
-	db.close()
-	return render_to_response('emp_list.html',  {'emp_list': emp_list}, context_instance = RequestContext(request))
+    db = get_db_conn()
+    cursor = db.cursor()
+    cursor.execute("CALL get_all_emps();")
+    emp_list = dictfetchall(cursor)
+    cursor.close()
+    db.commit()
+    db.close()
+    return render_to_response('emp_list.html',  {'emp_list': emp_list}, context_instance = RequestContext(request))
 
 
 @csrf_exempt
 def login_view(request):
-	if request.method == 'POST':
-		imei = request.POST['imei']
-		mac = request.POST['mac']
-		user = authenticate(imei = imei, mac = mac)
-		
-		if user is not None:
-			login(request, user)
-			logauth = {'Success':True, 'msg':'login Success'}
-		else:
-			logauth = {'Success':False, 'msg':'login Failed'}
-		return JsonResponse(logauth)
+    if request.method == 'POST':
+        imei = request.POST['imei']
+        mac = request.POST['mac']
+        user = authenticate(imei = imei, mac = mac)
+        if user is not None:
+            login(request, user)
+            logauth = {'success':True, 'msg':'login Success'}
+            response = JsonResponse(logauth)
+        else:
+            logauth = {'success':False, 'msg':'login Failed'}
+            response = JsonResponse(logauth)
+            response.status_code = 401        
+        return response
 
 
 
