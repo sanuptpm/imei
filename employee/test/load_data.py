@@ -1,16 +1,25 @@
 from employee.models import Profile 
+from django.db.models import Q
 
 
 def profile_data(imei,mac):
-	data = Profile.objects.filter(imei=imei) | Profile.objects.filter(mac=mac)
+	data = Profile.objects.filter(Q(imei=imei) | Q(mac=mac))
 	if not data:
-		print "---------DATA SAVED-----------------"
+		print "---------DATA  %d %d SAVED-----------------" %(imei, mac)
 		data = Profile(imei=imei, mac=mac)
 		data.save()
 	else:
-		print "--------USER ALREADY EXISTED----------"
+		print "--------USER %d %d ALREADY EXISTED----------" %(imei, mac)
+# DATA FOR PROFILE
 
-profile_data(1,1)
+data = [(1,2),(2,2),(3,3)]
+
+for x in data:
+	print ""
+	profile_data(x[0], x[1])
+
+
+
 
 
 

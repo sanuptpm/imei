@@ -3,7 +3,6 @@ import requests
 class LoginCheck:
 	def __init__(self):
 		self.session = requests.Session()
-		self.a = 1
 	def check_login_success(self,imei,mac):
 		url = "http://127.0.0.1:8000/login/"
 		data = {"imei":imei, "mac":mac}
