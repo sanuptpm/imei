@@ -3,10 +3,9 @@ from django.contrib import admin
 from django.conf import settings
 
 urlpatterns = patterns('',
-    # Examples:
 
-	url(r'^$', 'employee.views.employee_form', name='employee_form'),
-	url(r'^employee_list/', 'employee.views.employee_list', name='employee_list'),
+	url(r'^employee/', 'employee.views.add_employee', name='employee_form'),
+	url(r'^employees/', 'employee.views.list_employee', name='employee_list'),
 	url(r'^login/', 'employee.views.login_view', name='login'),
 	
 	

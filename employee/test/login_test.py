@@ -15,7 +15,7 @@ class LoginCheck:
 		#print response.request.headers
 		print "...LOGIN STATUS CODE....", response.status_code
 	def check_employee_success(self):
-		url =  "http://127.0.0.1:8000/employee_list/"
+		url =  "http://127.0.0.1:8000/employees/"
 		response = self.session.get(url)
 		#print ".............employee_list json response.........."
 		#print response.json()
