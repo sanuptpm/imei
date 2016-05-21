@@ -17,6 +17,7 @@ def dictfetchall(cursor):
         for row in cursor.fetchall()
     ]
 
+@login_required
 def add_employee(request):
     if request.method == 'POST':
         emp_name = request.POST.get('emp_name')

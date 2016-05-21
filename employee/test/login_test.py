@@ -6,21 +6,25 @@ class LoginCheck:
 	def __init__(self):
 		self.session = requests.Session()
 	def check_login(self,imei,mac):
-		url = BASE_URL+"login/"
+		url = BASE_URL+"login"
 		data = {"imei":imei, "mac":mac}
 		response = self.session.post(url, data=data)
 		#print ".............login json response.........."
 		#print response.json()
+		#print "...............content of the server's response..............."
+		#print response.text
 		#print ".............login headers response.........."
 		#print response.headers
 		#print ".............login response.request.headers.........."
 		#print response.request.headers
 		print "...LOGIN STATUS CODE....", response.status_code
 	def check_employee_list(self):
-		url =  BASE_URL+"employees/"
+		url =  BASE_URL+"employees"
 		response = self.session.get(url)
 		#print ".............employee_list json response.........."
 		#print response.json()
+		#print "...............content of the server's response..............."
+		#print response.text
 		#print ".............employee_list response.headers.........."
 		#print response.headers
 		#print ".............employee_list response.request.headers.........."
