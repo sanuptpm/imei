@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext,Context
-from django.http import HttpResponse,HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotAllowed
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, permission_required
@@ -49,5 +49,5 @@ def login_view(request):
             response = JsonResponse(logauth)
             response.status_code = 401        
         return response
-
+    return HttpResponseNotAllowed('POST')
 
