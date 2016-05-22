@@ -52,3 +52,5 @@ def login_view(request):
         return response
     return HttpResponseNotAllowed('POST')
 
+def logout_view(request):
+    logout(request)

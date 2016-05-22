@@ -30,10 +30,17 @@ class LoginCheck:
         #print ".............employee_list response.request.headers.........."
         #print response.request.headers
         print "...EMP STATUS CODE....", response.status_code
+    def check_logout(self):
+        url = BASE_URL+"logout"
+        response = self.session.get(url)
+        print "...LOGOUT STATUS CODE....", response.status_code
+
 
 print "-------CHECKING SUCCESS LOGIN-----------"
 obj = LoginCheck()
 obj.check_login(124,986)
+obj.check_employee_list()
+obj.check_logout()
 obj.check_employee_list()
 
 print "--------CHECKING FAILED LOGIN-----------"
