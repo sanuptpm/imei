@@ -47,7 +47,3 @@ print "--------CHECKING FAILED LOGIN-----------"
 obj = LoginCheck()
 obj.check_login(14,86)
 obj.check_employee_list()
-
-
-
-
