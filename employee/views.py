@@ -16,7 +16,10 @@ def dictfetchall(cursor):
         dict(zip([col[0] for col in desc], row))
         for row in cursor.fetchall()
     ]
-
+@login_required
+def index(request):
+    return render_to_response('index.html')
+    
 @login_required
 def add_employee(request):
     if request.method == 'POST':
