@@ -35,15 +35,19 @@ class LoginCheck:
         response = self.session.get(url)
         print "...LOGOUT STATUS CODE....", response.status_code
 
+def check_login_success():
+    obj = LoginCheck()
+    obj.check_login(124,986)
+    obj.check_employee_list()
+    obj.check_logout()
+    obj.check_employee_list()
+
+def check_login_fail():
+    obj = LoginCheck()
+    obj.check_login(14,86)
+    obj.check_employee_list()
 
 print "-------CHECKING SUCCESS LOGIN-----------"
-obj = LoginCheck()
-obj.check_login(124,986)
-obj.check_employee_list()
-obj.check_logout()
-obj.check_employee_list()
-
+check_login_success()
 print "--------CHECKING FAILED LOGIN-----------"
-obj = LoginCheck()
-obj.check_login(14,86)
-obj.check_employee_list()
+check_login_fail()
