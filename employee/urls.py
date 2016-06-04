@@ -8,5 +8,7 @@ urlpatterns = patterns('',
     url(r'^employees$', 'employee.views.list_employee', name='employee_list'),
     url(r'^login$', 'employee.views.login_view', name='login'),
     url(r'^logout$', 'employee.views.logout_view', name='logout'),
+    url(r'^login_test$', 'employee.views.login_test', name='login_test'),
+    
     
 )

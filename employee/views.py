@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.db import connection
-
+from employee.forms import ProfileForm
+from django.shortcuts import render
 
 def dictfetchall(cursor):
     "Returns all rows from a cursor as a dict"
@@ -46,6 +47,7 @@ def login_view(request):
         user = authenticate(imei = imei, mac = mac)
         if user is not None:
             login(request, user)
+
             logauth = {'success':True, 'msg':'login Success'}
             response = JsonResponse(logauth)
         else:
@@ -55,5 +57,11 @@ def login_view(request):
         return response
     return HttpResponseNotAllowed('POST')
 
+def login_test(request):
+    if request.method == 'GET':
+        form = ProfileForm()
+        return render(request,'login.html', {'form': form,})
+
 def logout_view(request):
     logout(request)
+    return HttpResponse()
