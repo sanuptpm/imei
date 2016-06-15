@@ -111,7 +111,7 @@ AUTHENTICATION_BACKENDS = ('employee.backends.ProfileAuthBackend', 'django.contr
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -126,3 +126,28 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/login'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters':{
+        'details':{
+            'format':'%(asctime)s %(process)d %(filename)s %(funcName)s %(lineno)d %(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'employee/log/debug.log',
+            'formatter': 'details',
+        },
+    },
+    'loggers': {
+        'employee.views': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

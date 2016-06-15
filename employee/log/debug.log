@@ -1,0 +1,2 @@
+2016-06-15 13:06:40,069 19672 views.py login_test 69 INFO User login request
+2016-06-15 13:06:52,590 19672 views.py login_view 60 ERROR Unauthorized user login : {'msg': 'login Failed', 'success': False} imei:  mac: 
